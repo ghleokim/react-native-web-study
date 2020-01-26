@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { Colors } from "./CustomColor";
 
 export const CustomStyle = StyleSheet.create({
   sectionContainer: {
@@ -13,6 +14,13 @@ export const CustomStyle = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
     alignItems: "center"
+  },
+  input: {
+    height: 40,
+    borderColor: Colors.navy,
+    borderWidth: 2,
+    borderRadius: 10,
+    paddingHorizontal: 5
   },
   highlight: {
     fontWeight: '700',

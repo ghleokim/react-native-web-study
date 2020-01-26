@@ -4,6 +4,8 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'reac
 import { mainStoreContext } from '../store/MainStore';
 import { searchStoreContext } from '../store/SearchStore';
 import { observer } from 'mobx-react-lite';
+import { CustomStyle } from '../static/CustomStyle';
+import { Colors } from '../static/CustomColor';
 
 export const RouteMain: React.FC = observer(() => {
   const mainStore = useContext(mainStoreContext);
@@ -14,6 +16,11 @@ export const RouteMain: React.FC = observer(() => {
     searchStore.searchKeyword = keyword;
   }
 
+  const handleSearchButton = (text: string) => {
+    console.log(text)
+    console.log('enter')
+  }
+
   return (
     <View style={{ flex: 1, flexDirection: 'column' }}>
       <View>
@@ -21,27 +28,39 @@ export const RouteMain: React.FC = observer(() => {
         <View style={styles.mainBanner}>
           <Image style={styles.mainBanner} source={require('@foodtruckmap/common/src/static/banner.png')} />
         </View>
+        <View>
+          <Text>
+            "내 주변 푸드트럭"
+          </Text>
+        </View>
         <View style={styles.mainButtonWrapper}>
           <TouchableOpacity style={styles.mainButton} onPress={() => { mainStore.currentPage = 'mapPage' }}><Text style={styles.sectionTitle}> 내 주변 푸드트럭 찾기 🚚 > </Text></TouchableOpacity>
         </View>
-        <View>
+        <View style={styles.searchBarWrapper}>
           <TextInput
+            style={[styles.input, { flex: 4 }]}
             underlineColorAndroid="transparent"
-            placeholder={searchStore.searchKeyword}
-            placeholderTextColor="#9a73ef"
+            placeholder={searchStore.searchPlaceholder}
             autoCapitalize="none"
             onChangeText={handleSearchBar}
+            onSubmitEditing={(text) => handleSearchButton}
           />
+          <TouchableOpacity style={{ marginLeft: 5, borderRadius: 10, alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: Colors.navy }}>
+            <Text style={{ color: Colors.white }}>검색</Text>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.staticInfo}>
-        <Text style={styles.staticText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet congue felis, id accumsan est. Pellentesque lobortis diam euismod dolor consequat gravida. Donec lobortis pretium nunc, in tincidunt felis consectetur ut. Nam sollicitudin erat vel felis porta ultrices. Pellentesque aliquet dolor elit, sit amet maximus mi dapibus quis. Nam eu laoreet risus, gravida sagittis felis. Vivamus fringilla faucibus urna, ut malesuada lorem facilisis vitae. Donec felis nisl, tincidunt at consequat sit amet, dictum ac nisl.</Text>
+        <Text style={styles.staticText}>
+          <Text style={styles.staticTextLink} onPress={() => console.log('hello')}>팀 정보</Text> | <Text style={styles.staticTextLink} onPress={() => console.log('hello2')}>이용 약관</Text> | <Text style={styles.staticTextLink} onPress={() => console.log('hello3')}>개인정보처리방침</Text>
+        </Text>
+        <Text style={styles.staticText}>foodtruck-map</Text>
       </View>
     </View>
   )
 })
 
-const styles = StyleSheet.create({
+const LocalStyles = StyleSheet.create({
   mainBanner: {
     height: 150,
     width: '100%',
@@ -59,25 +78,40 @@ const styles = StyleSheet.create({
   mainButton: {
     width: '100%',
     borderColor: '#f34600',
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1
+  },
+  searchBarWrapper: {
+    height: 70,
+    width: '100%',
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    flex: 1,
+    flexDirection: 'row',
   },
   sectionTitle: {
     fontSize: 24,
     fontWeight: '600'
   },
   staticInfo: {
-    backgroundColor: '#a0a0a0',
+    backgroundColor: '#e4e4e5',
     marginTop: 5,
+    paddingTop: 8,
+    paddingBottom: 20,
     paddingHorizontal: 10,
-    flex: 1,
+    alignItems: 'center',
     alignSelf: 'stretch'
   },
   staticText: {
-    fontSize: 10,
+    fontSize: 14,
     color: '#505050'
+  },
+  staticTextLink: {
+    textDecorationLine: 'underline',
   }
 })
+
+const styles = { ...CustomStyle, ...LocalStyles }

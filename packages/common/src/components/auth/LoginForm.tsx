@@ -89,7 +89,7 @@ class LoginForm extends Component {
     email: "",
     password: "",
     responseData: "",
-    responseStatus: Numbers
+    responseStatus: Number
   };
 
   handleEmail = (text: string) => {

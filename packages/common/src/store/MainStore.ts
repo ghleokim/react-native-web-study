@@ -9,6 +9,7 @@ class MainStore {
   @observable currentPage: currentPage = 'mainPage';
   @observable screenHeight: number = 0;
   @observable footerHeight: number = 0;
+  @observable headerHeight: number = 0;
   @observable scrollviewHeight: number = 0;
 
   // userinfo
