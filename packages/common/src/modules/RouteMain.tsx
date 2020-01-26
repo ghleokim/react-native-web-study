@@ -6,6 +6,7 @@ import { searchStoreContext } from '../store/SearchStore';
 import { observer } from 'mobx-react-lite';
 import { CustomStyle } from '../static/CustomStyle';
 import { Colors } from '../static/CustomColor';
+import { BannerSwiper } from '../components/main/BannerSwiper'
 
 export const RouteMain: React.FC = observer(() => {
   const mainStore = useContext(mainStoreContext);
@@ -27,9 +28,10 @@ export const RouteMain: React.FC = observer(() => {
   return (
     <View style={{ flex: 1, flexDirection: 'column' }}>
       <View>
-        <View style={[styles.mainBanner, {height: bannerHeight}]}>
+        <BannerSwiper />
+        {/* <View style={[styles.mainBanner, {height: bannerHeight}]}>
           <Image style={[styles.mainBannerImage, {height: bannerHeight}]} source={require('@foodtruckmap/common/src/static/banner/bamdokkabi_1280_480.png')} />
-        </View>
+        </View> */}
         <View style={styles.mainButtonWrapper}>
           <TouchableOpacity style={styles.mainButton} onPress={() => { mainStore.currentPage = 'mapPage' }}><Text style={styles.sectionTitle}> 내 주변 푸드트럭 찾기 🚚 > </Text></TouchableOpacity>
         </View>
