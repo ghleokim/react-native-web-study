@@ -12,6 +12,9 @@ export const RouteMain: React.FC = observer(() => {
   const searchStore = useContext(searchStoreContext);
   const currentPage = mainStore.currentPage
 
+  const bannerHeight = mainStore.screenWidth / 2.6
+  console.log(`bannerheight` , bannerHeight)
+
   const handleSearchBar = (keyword: string) => {
     searchStore.searchKeyword = keyword;
   }
@@ -24,14 +27,8 @@ export const RouteMain: React.FC = observer(() => {
   return (
     <View style={{ flex: 1, flexDirection: 'column' }}>
       <View>
-        <Text style={styles.sectionTitle}>{currentPage}</Text>
-        <View style={styles.mainBanner}>
-          <Image style={styles.mainBanner} source={require('@foodtruckmap/common/src/static/banner.png')} />
-        </View>
-        <View>
-          <Text>
-            "내 주변 푸드트럭"
-          </Text>
+        <View style={[styles.mainBanner, {height: bannerHeight}]}>
+          <Image style={[styles.mainBannerImage, {height: bannerHeight}]} source={require('@foodtruckmap/common/src/static/banner/bamdokkabi_1280_480.png')} />
         </View>
         <View style={styles.mainButtonWrapper}>
           <TouchableOpacity style={styles.mainButton} onPress={() => { mainStore.currentPage = 'mapPage' }}><Text style={styles.sectionTitle}> 내 주변 푸드트럭 찾기 🚚 > </Text></TouchableOpacity>
@@ -67,7 +64,7 @@ const LocalStyles = StyleSheet.create({
     backgroundColor: '#f3f3f3'
   },
   mainBannerImage: {
-    height: 100,
+    height: 150,
     width: '100%',
   },
   mainButtonWrapper: {

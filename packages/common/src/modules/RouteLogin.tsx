@@ -15,6 +15,9 @@ export const RouteLogin: React.FC = observer(() => {
       <Text style={styles.sectionTitle}>{currentPage}</Text>
       <NewLoginForm />
       <SignupForm />
+      {/* test for long contents */}
+      <SignupForm />
+      <SignupForm />
     </View>
   )
 })

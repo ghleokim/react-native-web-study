@@ -11,17 +11,20 @@ import { Router } from './Router';
 import { mainStoreContext } from './store/MainStore';
 import { CustomStyle } from './static/CustomStyle';
 import { Navbar } from './components/main/Navbar';
+import { Header } from './components/main/Header';
 
 export const App: React.FC = observer(() => {
   const mainStore = useContext(mainStoreContext);
-
+  
+  mainStore.screenWidth = Dimensions.get('screen').width;
   mainStore.screenHeight = Dimensions.get('screen').height;
   mainStore.scrollviewHeight = mainStore.screenHeight - mainStore.footerHeight - mainStore.headerHeight;
 
   console.log(mainStore)
   return (
     <View style={{ height: mainStore.screenHeight, flex: 1 }}>
-      <ScrollView style={{ height: mainStore.scrollviewHeight, paddingBottom: mainStore.footerHeight }} contentContainerStyle={{flex: 1, flexDirection: 'column', alignItems: 'stretch'}}>
+      <Header />
+      <ScrollView style={{ height: mainStore.scrollviewHeight, marginTop: mainStore.headerHeight, marginBottom: mainStore.footerHeight }} contentContainerStyle={{flex: 1, flexDirection: 'column', alignItems: 'stretch'}}>
         <Router />
         <View style={{ backgroundColor: '#e4e4e5', flexGrow: 1, minHeight: 110 }}></View>
       </ScrollView>

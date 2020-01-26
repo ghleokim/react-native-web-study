@@ -7,6 +7,7 @@ class MainStore {
   // global setting
   @observable proxy: string = 'http://70.12.246.0:8001';
   @observable currentPage: currentPage = 'mainPage';
+  @observable screenWidth: number = 0;
   @observable screenHeight: number = 0;
   @observable footerHeight: number = 0;
   @observable headerHeight: number = 0;
