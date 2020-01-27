@@ -20,7 +20,7 @@ export const Swiper: React.FC<Props> = observer(({ loop, children }) => {
   }
 
   const bannerCountFadeOut = () => {
-    console.log(mainStore.bannerCountOpacity)
+    mainStore.bannerCountOpacity = 0.1
   }
 
   const getScrollPage = (e: any) => {
