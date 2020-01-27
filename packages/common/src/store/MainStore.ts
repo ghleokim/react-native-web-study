@@ -17,6 +17,11 @@ class MainStore {
   @observable loggedIn: boolean = false;
   @observable isSeller: boolean = false;
 
+  // bannerinfo
+  @observable bannerPage: number = 1;
+  @observable bannerTotal: number = 1;
+  @observable bannerCountOpacity: number = 1;
+
   // test
   @observable count = 0;
 }
